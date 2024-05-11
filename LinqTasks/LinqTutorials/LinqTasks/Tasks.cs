@@ -110,7 +110,10 @@ public static partial class Tasks
     /// </summary>
     public static Emp Task9()
     {
-        return null;
+        return Emps
+            .Where(emp => emp.Job == "Frontend programmer")
+            .OrderByDescending(emp => emp.HireDate)
+            .First();
     }
 
     /// <summary>
