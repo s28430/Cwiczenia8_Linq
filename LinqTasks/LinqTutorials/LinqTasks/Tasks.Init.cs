@@ -28,10 +28,26 @@ public static partial class Tasks
             Dname = "IT",
             Loc = "Los Angeles"
         };
+        
+        Dept d4 = new()
+        {
+            Deptno = 5,
+            Dname = "Accounting",
+            Loc = "Radom"
+        };
+
+        Dept d5 = new()
+        {
+            Deptno = 2137,
+            Dname = "Testing",
+            Loc = "VadoVice"
+        };
 
         deptsCol.Add(d1);
         deptsCol.Add(d2);
         deptsCol.Add(d3);
+        deptsCol.Add(d4);
+        deptsCol.Add(d5);
 
         return deptsCol;
     }
@@ -149,6 +165,28 @@ public static partial class Tasks
             Mgr = null,
             Salary = 9000
         };
+        
+        Emp e12 = new()
+        {
+            Deptno = 5,
+            Empno = 100,
+            Ename = "Marcin Marcinowski",
+            HireDate = DateTime.Now.AddMonths(-10),
+            Job = "KING",
+            Mgr = null,
+            Salary = 50000
+        };
+
+        Emp e11 = new()
+        {
+            Deptno = 5,
+            Empno = 10,
+            Ename = "Kunta Kinte",
+            HireDate = DateTime.Now.AddMonths(-4),
+            Job = "Backend programmer",
+            Mgr = e12,
+            Salary = 2000
+        };
 
         empsCol.Add(e1);
         empsCol.Add(e2);
@@ -160,6 +198,8 @@ public static partial class Tasks
         empsCol.Add(e8);
         empsCol.Add(e9);
         empsCol.Add(e10);
+        empsCol.Add(e11);
+        empsCol.Add(e12);
 
         return empsCol;
     }

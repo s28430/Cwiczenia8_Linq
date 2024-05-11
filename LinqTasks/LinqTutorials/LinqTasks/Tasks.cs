@@ -199,6 +199,23 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<Dept> Task14()
     {
-        return null;
+        var temp = Depts
+            .GroupJoin(Emps, dept => dept.Deptno, emp => emp.Deptno, (dept, emps) => new
+            {
+                dept,
+                count = emps.Count()
+            }).ToList();
+        foreach (var x1 in temp)
+        {
+            Console.WriteLine(x1);
+        }
+        return Depts
+            .GroupJoin(Emps, dept => dept.Deptno, emp => emp.Deptno, (dept, emps) => new
+            {
+                dept,
+                count = emps.Count()
+            })
+            .Where(obj => obj.count is 5 or 0)
+            .Select(obj => obj.dept);
     }
 }
