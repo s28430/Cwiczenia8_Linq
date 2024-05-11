@@ -151,7 +151,18 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task11()
     {
-        return null;
+        return Emps
+            .Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
+            {
+                emp.Empno,
+                dept.Dname
+            })
+            .GroupBy(obj => obj.Dname)
+            .Select(group => new
+            {
+                name = group.Key,
+                numOfEmployees = group.Count()
+            });
     }
 
     /// <summary>
