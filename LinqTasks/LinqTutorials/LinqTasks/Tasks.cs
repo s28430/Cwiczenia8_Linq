@@ -74,9 +74,9 @@ public static partial class Tasks
     {
         return Emps.Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
         {
-            Ename = emp.Ename,
-            Job = emp.Job,
-            Dname = dept.Dname
+            emp.Ename,
+            emp.Job,
+            dept.Dname
         });
     }
 
@@ -85,7 +85,13 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task7()
     {
-        return null;
+        return Emps
+            .GroupBy(emp => emp.Job)
+            .Select(group => new
+            {
+                Praca = group.Key,
+                LiczbaPracownikow = group.Count()
+            });
     }
 
     /// <summary>
@@ -94,7 +100,8 @@ public static partial class Tasks
     /// </summary>
     public static bool Task8()
     { 
-        return false;
+        return Emps
+            .Any(emp => emp.Job == "Backend programmer");
     }
 
     /// <summary>
