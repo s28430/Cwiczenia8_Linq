@@ -123,7 +123,19 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task10()
     {
-        return null;
+        return Emps
+            .Select(emp => new
+            {
+                emp.Ename, 
+                emp.Job,
+                emp.HireDate
+            })
+            .Concat(new [] {new
+            {
+                Ename = "Brak wartości",
+                Job = (string)null,
+                HireDate = (DateTime?)null
+            }});
     }
 
     /// <summary>
