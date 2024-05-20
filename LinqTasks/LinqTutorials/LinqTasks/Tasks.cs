@@ -19,7 +19,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<Emp> Task1()
     {
-        return Emps
+        return 
+            Emps
             .Where(emp => emp.Job == "Backend programmer");
     }
 
@@ -28,7 +29,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<Emp> Task2()
     {
-        return Emps
+        return 
+            Emps
             .Where(emp => emp.Job == "Frontend programmer" && emp.Salary > 1000)
             .OrderByDescending(emp => emp.Ename);
     }
@@ -39,7 +41,8 @@ public static partial class Tasks
     /// </summary>
     public static int Task3()
     {
-        return Emps
+        return
+            Emps
             .Max(emp => emp.Salary);
     }
 
@@ -48,7 +51,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<Emp> Task4()
     {
-        return Emps
+        return
+            Emps
             .Where(emp => emp.Salary == Task3());
     }
 
@@ -57,7 +61,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task5()
     {
-        return Emps
+        return
+            Emps
             .Select(emp => new
             {
                 Nazwisko = emp.Ename,
@@ -72,12 +77,14 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task6()
     {
-        return Emps.Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
-        {
-            emp.Ename,
-            emp.Job,
-            dept.Dname
-        });
+        return 
+            Emps
+                .Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
+                {
+                    emp.Ename,
+                    emp.Job,
+                    dept.Dname
+                });
     }
 
     /// <summary>
@@ -85,7 +92,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task7()
     {
-        return Emps
+        return
+            Emps
             .GroupBy(emp => emp.Job)
             .Select(group => new
             {
@@ -100,7 +108,8 @@ public static partial class Tasks
     /// </summary>
     public static bool Task8()
     { 
-        return Emps
+        return 
+            Emps
             .Any(emp => emp.Job == "Backend programmer");
     }
 
@@ -110,7 +119,8 @@ public static partial class Tasks
     /// </summary>
     public static Emp Task9()
     {
-        return Emps
+        return 
+            Emps
             .Where(emp => emp.Job == "Frontend programmer")
             .OrderByDescending(emp => emp.HireDate)
             .First();
@@ -123,7 +133,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task10()
     {
-        return Emps
+        return
+            Emps
             .Select(emp => new
             {
                 emp.Ename, 
@@ -151,7 +162,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<object> Task11()
     {
-        return Emps
+        return
+            Emps
             .Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
             {
                 emp.Empno,
@@ -173,7 +185,7 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<Emp> Task12()
     {
-        IEnumerable<Emp> result = Emps.GetEmpsWithSubordinates();
+        var result = Emps.GetEmpsWithSubordinates();
         
         return result;
     }
@@ -187,7 +199,8 @@ public static partial class Tasks
     /// </summary>
     public static int Task13(int[] arr)
     {
-        return arr
+        return
+            arr
             .GroupBy(num => num)
             .First(group => group.Count() % 2 != 0)
             .Key;
@@ -199,17 +212,8 @@ public static partial class Tasks
     /// </summary>
     public static IEnumerable<Dept> Task14()
     {
-        var temp = Depts
-            .GroupJoin(Emps, dept => dept.Deptno, emp => emp.Deptno, (dept, emps) => new
-            {
-                dept,
-                count = emps.Count()
-            }).ToList();
-        foreach (var x1 in temp)
-        {
-            Console.WriteLine(x1);
-        }
-        return Depts
+        return 
+            Depts
             .GroupJoin(Emps, dept => dept.Deptno, emp => emp.Deptno, (dept, emps) => new
             {
                 dept,
